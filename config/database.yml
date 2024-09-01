@@ -1,0 +1,21 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  timeout: 5000
+  username: <%= ENV.fetch("DB_USERNAME", "lms-app-admin") %>
+  password: <%= ENV.fetch("DB_PASSWORD", "031198") %>
+  host: <%= ENV.fetch("DB_HOST", "localhost") %>
+  port: <%= ENV.fetch("DB_PORT", 3000) %>
+
+development:
+  <<: *default
+  database: <%= ENV.fetch("DB_NAME_DEVELOPMENT", "lms-app-dev") %>
+
+# test:
+#   <<: *default
+#   database: <%= ENV.fetch("DB_NAME_TEST", "lms-app_test") %>
+
+production:
+  <<: *default
+  database: <%= ENV.fetch("DB_NAME_PRODUCTION", "lms-app") %>
